@@ -1,0 +1,76 @@
+{{this.config.state}}
+<div *ngIf="this.state == 'EnProceso'">
+    <div class="table-light">
+        <div class="row">
+            <div class="col-sm-7">
+                <div *ngIf="config['gameMode'] == 2">
+                    <h4> {{ config['player1'] }} vs {{ config['player2'] }} </h4>
+                </div>
+                <div *ngIf="config['gameMode'] != 2 ">
+                    <h4 *ngIf="currentStatus.player == 1">Turno Actual: {{ config['player1'] }}</h4>
+                    <h4 *ngIf="currentStatus.player == 2">Turno Actual: {{ config['player2'] }}</h4>
+                </div>
+
+                <div *ngIf="currentStatus.stat == 2;">
+                    <h4>Juego Terminado!</h4>
+                    <h4 *ngIf="currentStatus.win == 1">Ganador: {{ config['player1'] }}</h4>
+                    <h4 *ngIf="currentStatus.win == 2">Ganador: {{ config['player2'] }}</h4>
+                    <h4 *ngIf="currentStatus.win == 3">Empate! Vaya...</h4>
+                </div>
+            </div>
+            <div class="col-sm-1">
+                <h4>Puntaje:</h4>
+            </div>
+            <div class="col-sm-3">
+                <div class="row">
+                    <h4>{{ config['player1'] }}: {{currentStatus.score[0]}}</h4>
+                </div>
+                <div class="row">
+                    <h4>{{ config['player2'] }}: {{currentStatus.score[1]}}</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="table-responsive">
+            <div *ngFor="let row of currentStatus.status; let j = index" style="height: 10%;"class="col-md">
+                <div class="row">
+                    <div *ngFor="let col of row; let k = index" [ngStyle]="{'background':config.bgColor,'width':'10%'}" class=" celda card" (click)="markPosition(j,k)">
+                        <img *ngIf="col.player=='1'" [src]="config.player1ficha" width="95%" class="img-rounded">
+                        <img *ngIf="col.player=='2'" [src]="config.player2ficha" width="95%" class="img-rounded">
+                        <img *ngIf="col.player=='0'" src="../../assets/img/fichas/void.png" width="95%" class="img-rounded">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="text-center" *ngIf="this.state == 'MultijugadorEnEspera'">
+    <img src="../../assets/img/charging.gif" />
+    <h1>Esperando Oponente</h1>
+</div>
+
+<div *ngIf="this.state == 'OponenteEncontrado'">
+        <div class="card" style="width: 18rem;">
+                <img class="card-img-top" [src]="temporalOponent.user.photoURL" alt="Card image cap">
+                <div class="card-body">
+                  <p class="card-text"><strong>{{temporalOponent.user.displayName}}</strong></p>
+                  <p class="card-text"><strong>Ganadas: </strong>{{temporalOponent.extraInfo.nivel}}</p>
+                  <p class="card-text"><strong>Perdidas: </strong>{{temporalOponent.extraInfo.ganados}}</p>
+                  <p class="card-text"><strong>Empatadas: </strong>{{temporalOponent.extraInfo.perdidos}}</p>
+                  <p class="card-text"><strong>Nivel: </strong>{{temporalOponent.extraInfo.empatados}}</p>
+                  <button class="btn btn-success" (click)="acceptPlayer()">Aceptar Jugador</button>
+                  <button class="btn btn-danger" (click)="negatePlayer()">Rechazar Jugador</button>
+                </div>
+              </div>
+    
+</div>
+
+<div class="text-center" *ngIf="this.state == 'abandono'">
+    <img class="img" src="../../assets/img/runner.gif" />
+    <h1>Tu oponente ha abandonado la partida</h1>
+    <h2>La partida ha sido guardada en partidas inconclusas</h2>
+</div>

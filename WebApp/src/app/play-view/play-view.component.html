@@ -1,0 +1,71 @@
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="card card-signin my-5">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Nueva Partida de Othello</h5>
+                        <form>
+                            <div class="form-row">
+                                <div class="form-group col-md-5">
+                                    <label for="inputState">Modo de Juego</label>
+                                    <select (change)="onChangeGM($event.target.value)" id="GameModeInput" class="form-control">
+                                    <option value="1">Jugador vs Jugador</option>
+                                    <option value="2">Jugador vs Máquina</option>
+                                    <option value="3">Jugador vs jugador Online</option>
+                                  </select>
+                                </div>
+                                <div class="col-md-1">
+
+                                </div>
+                                <div class="form-group col-md-4" *ngIf="this.gameConfig.gameMode == 2">
+                                    <label for="inputState">Dificultad</label>
+                                    <select (change)="onChangeDif($event.target.value)" id="DificultadInput" class="form-control">
+                                      <option value="1">Facil</option>
+                                      <option value="2">Medio</option>
+                                      <option value="3">Dificl</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-5">
+                                    <label for="inputState">{{this.gameConfig.player1}} Ficha </label>
+                                    <select (change)="onChange(1,$event.target.value)" id="player1M" class="form-control">
+                                    <option *ngFor="let letter of letters" [value]="letter[1]"> {{letter[0]}}</option>
+                                    </select>
+                                    <img [src]="gameConfig.player1ficha" width="50px" class="img-rounded center">
+                                </div>
+                                <div class="col-md-1">
+
+                                </div>
+                                <div class="form-group col-md-5">
+                                    <label for="inputState">{{this.gameConfig.player2}} Ficha </label>
+                                    <select (change)="onChange(2,$event.target.value)" id="player2M" class="form-control">
+                                    <option *ngFor="let letter of letters" [value]="letter[1]"> {{letter[0]}}</option>
+                                    </select>
+                                    <img [src]="gameConfig.player2ficha" width="50px" class="img-rounded center">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-5">
+                                    <label for="inputState">Tamaño Tablero</label>
+                                    <select (change)="onChangeBs($event.target.value)" id="BoardSizeInput" class="form-control">
+                                    <option value="6">6</option>
+                                    <option value="8">8</option>
+                                    <option value="10">10</option>
+                                  </select>
+                                </div>
+                                <div class="col-md-1">
+
+                                </div>
+                            </div>
+                            <button (click)="startGame()" [disabled]="this.gameConfig.player1ficha == this.gameConfig.player2ficha" type="button" class="btn btn-block myButton">Iniciar Partida</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

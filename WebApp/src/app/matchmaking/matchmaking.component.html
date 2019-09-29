@@ -1,0 +1,31 @@
+<div class="container text-light">
+    <h1>Jugar en Linea</h1>
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-3">
+            <div class="chat-window bg-info">
+                <app-chat></app-chat>
+            </div>
+        </div>
+        <div class="col-8 lobby bg-info" style="width: 50%;">
+            <div>
+                <table style="width: 100%">
+                    <tr>
+                        <th>ID Partida</th>
+                        <th>Jugador En Espera</th>
+                        <th>Datos del Jugador (Nivel/G/P/E)</th>
+                        <th></th>
+                    </tr>
+                    <tr *ngFor="let match of this.matches">
+                        <td>{{match.id}}</td>
+                        <td>{{match.player1}}</td>
+                        <td *ngFor="let post of fuckMyLife[match.id] | async">
+                            {{ post.nivel}} / {{ post.ganados}} / {{ post.perdidos}} / {{ post.empatados}}
+                        </td>
+                        <td><button (click)="joinMatch(match.id)" class="btn btn-primary">Unirse</button></td>
+                    </tr>
+                </table>              
+            </div>           
+        </div>
+    </div>
+</div>

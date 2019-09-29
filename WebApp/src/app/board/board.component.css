@@ -1,0 +1,10 @@
+
+.celda{
+  text-align: center;
+  border-color: black;
+}
+
+.centrarCaja {
+  position:relative;
+  left:40%;
+}

@@ -1,0 +1,30 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css';
+.chat-window {
+    float: right;
+    padding: 10px;
+    width: 300px;
+    height: 400px;
+    overflow: hidden;
+    border: 2px solid darkcyan;
+    border-radius: 20px;
+}
+
+.lobby {
+    padding: 10px;
+    overflow: hidden;
+    border: 2px solid darkcyan;
+    border-radius: 20px;
+}
+
+.app-mensajes {
+    overflow-y: scroll;
+    height: 270px;
+    /*background:gray;*/
+    padding: 5px;
+}
+
+.full-height {
+    height: 100%;
+}

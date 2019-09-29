@@ -1,0 +1,12 @@
+html {
+    height: 100vh;
+}
+
+body {
+    background: #9CECFB;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #3949AB, #AB47BC );
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #3949AB, #AB47BC  );
+    min-height: 100vh;
+}

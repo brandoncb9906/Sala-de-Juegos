@@ -1,0 +1,29 @@
+<body>
+    <div class="container"> 
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="card card-signin my-5">
+                    <div class="card-body" *ngIf="this.user == null">
+                        <h5 class="card-title text-center">Sign In</h5>
+                        <form class="form-signin">                        
+                            <div class="custom-control custom-checkbox mb-3">
+                                <input type="checkbox" class="custom-control-input" id="customCheck1">
+                            </div>
+                            <hr class="my-4">
+                            <button class="btn btn-lg btn-google btn-block text-uppercase" (click)="signInWithGoogle()" type="button"><i class="fab fa-google mr-2"></i> Iniciar sesion Google</button>
+                       </form>
+                    </div>
+                    <div class="card-body" *ngIf="this.user != null">
+                        <h5 class="card-title text-center">Bienvenido(a) {{user}}</h5>
+                        <a routerLink="../memoria"><button class="btn btn-info btn-block myButton"> Jugar Memoria </button></a>
+                        <P> </P>
+                        <a routerLink="../othello"><button class="btn btn-info btn-block myButton"> Jugar Othello </button></a>
+                        <P> </P>
+                        <a routerLink="../matches"><button class="btn btn-info btn-block myButton"> Ver partidas online </button></a>
+                        <hr>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

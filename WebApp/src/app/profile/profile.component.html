@@ -1,0 +1,38 @@
+<div class="container">
+    <h1 style="color: white">
+        Perfil del Jugador
+    </h1>
+</div>
+
+<div class="container">
+    <div class="card-deck">
+        <div class="card text-white bg-info" style="max-width: 18rem;">
+            <div class="card-header">Datos Personales</div>
+            <div class="card-body">
+                <h5 class="card-title">Nombre del Jugador(a)</h5>
+                <p class="card-text">{{usuario.nombre}}</p>
+                <h5 class="card-title">Email del Jugador(a)</h5>
+                <p class="card-text">{{usuario.email}}</p>
+            </div>
+        </div>
+
+        <div class="card text-white bg-info" style="max-width: 18rem;">
+            <div class="card-header">Estadisticas de Juego</div>
+            <div class="card-body" *ngFor="let post of acm1pt | async">
+                <h5 class="card-title">Nivel de Juego</h5>
+                <p class="card-text">{{ post.nivel}}</p>
+                <h5 class="card-title">Partidas Ganadas</h5>
+                <p class="card-text">{{ post.ganados}}</p>
+                <h5 class="card-title">Partidas Perdidas</h5>
+                <p class="card-text">{{ post.perdidos}}</p>
+                <h5 class="card-title">Partidas Empatadas</h5>
+                <p class="card-text">{{ post.empatados}}</p>
+            </div>
+        </div>
+        <div class="card text-white bg-info" style="max-width: 18rem;">
+            <div class="card-header">Foto Perfil</div>
+            <img class="card-img-top" [src]="usuario.foto">
+        </div>
+
+    </div>
+</div>
